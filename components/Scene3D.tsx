@@ -64,7 +64,8 @@ function Model({
   anchorsRef: React.MutableRefObject<THREE.Vector3[]>;
   meshRefs: React.MutableRefObject<{ current: THREE.Object3D }[]>;
 }) {
-  const { scene } = useGLTF(MODEL_URL);
+  // `true` → decode with Draco (the model geometry is Draco-compressed).
+  const { scene } = useGLTF(MODEL_URL, true);
   const spinRef = useRef<THREE.Group>(null);
 
   // Process the model once: clone (Strict-Mode / cache safe), flatten the mesh
@@ -311,4 +312,4 @@ export default function Scene3D() {
   );
 }
 
-useGLTF.preload(MODEL_URL);
+useGLTF.preload(MODEL_URL, true);

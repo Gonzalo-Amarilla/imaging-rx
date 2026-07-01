@@ -41,6 +41,16 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap"
           rel="stylesheet"
         />
+        {/* Start downloading the 3D model immediately, in parallel with the JS,
+            so it's already cached by the time the WebGL scene mounts. */}
+        <link
+          rel="preload"
+          href="/models/ct_scanner.glb"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+        {/* Warm up the connection to the Draco decoder CDN (gstatic). */}
+        <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans antialiased">{children}</body>
     </html>

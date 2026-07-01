@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #ffffff;
+  color: #0c1b33;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Exact backdrop gradient from the design system. */
+.bg-clinical-gradient {
+  background:
+    radial-gradient(130% 90% at 50% 0%, #ffffff 0%, #f1f5fc 62%, #e7eef9 100%);
+}
+
+/* Soft blue glow that sits behind the 3D model (from the design). */
+.hero-glow {
+  position: fixed;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  width: min(760px, 70vw);
+  height: min(520px, 56vh);
+  background: radial-gradient(
+    closest-side,
+    rgba(120, 170, 255, 0.3),
+    rgba(120, 170, 255, 0) 72%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* Holographic base rings under the model (from the design). */
+.hero-rings {
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  width: min(860px, 82vw);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    rgba(26, 95, 224, 0.05),
+    rgba(26, 95, 224, 0) 70%
+  );
+}
+.hero-rings::before,
+.hero-rings::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(26, 95, 224, 0.12);
+}
+.hero-rings::after {
+  inset: 20%;
+  border-color: rgba(26, 95, 224, 0.09);
+}
+
+/* Floating white cards flanking the model (design images 3 & 4). */
+.feature-card {
+  position: relative;
+  padding: 15px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(12, 27, 51, 0.06);
+  box-shadow:
+    0 16px 40px -16px rgba(12, 27, 51, 0.24),
+    0 2px 6px rgba(12, 27, 51, 0.05);
+}
+
+/* Thin connector that anchors a card to the model (like the reference). The
+   width is set per-card so the end dots trace the round contour of the gantry. */
+.card-connector {
+  position: absolute;
+  top: 50%;
+  height: 1.5px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.card-connector.right {
+  left: 100%;
+  margin-left: 7px;
+  background: linear-gradient(90deg, rgba(26, 95, 224, 0) 0%, rgba(26, 95, 224, 0.85) 100%);
+}
+.card-connector.left {
+  right: 100%;
+  margin-right: 7px;
+  background: linear-gradient(90deg, rgba(26, 95, 224, 0.85) 0%, rgba(26, 95, 224, 0) 100%);
+}
+.card-connector::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #1a5fe0;
+  box-shadow: 0 0 0 3px rgba(26, 95, 224, 0.15);
+  transform: translateY(-50%);
+}
+.card-connector.right::after {
+  right: -3px;
+}
+.card-connector.left::after {
+  left: -3px;
+}
+
+/* Compact trust badges shown under the title on tablet / mobile. */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(12, 27, 51, 0.06);
+  box-shadow: 0 6px 18px -8px rgba(12, 27, 51, 0.18);
+  font-size: 13px;
+  font-weight: 600;
+  color: #0c1b33;
+  white-space: nowrap;
+}
+
+/* Scroll indicator pulse (matches the design's scrollPulse keyframes). */
+@keyframes scrollPulse {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  50.01% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Label connector + chip styling (rendered via drei <Html>) */
+.label-anchor {
+  position: relative;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, transform;
+  transform: translate(-50%, -50%);
+}
+
+.label-line {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1.5px;
+  width: 58px;
+  background: linear-gradient(90deg, rgba(26, 95, 224, 0) 0%, rgba(26, 95, 224, 1) 100%);
+  transform-origin: left center;
+}
+
+.label-dot {
+  position: absolute;
+  left: -4px;
+  top: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #1a5fe0;
+  box-shadow: 0 0 0 4px rgba(26, 95, 224, 0.16);
+}
+
+.label-chip {
+  position: absolute;
+  left: 66px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  padding: 10px 16px 10px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(12, 27, 51, 0.08);
+  box-shadow:
+    0 12px 32px -10px rgba(12, 27, 51, 0.28),
+    0 2px 6px rgba(12, 27, 51, 0.06);
+}
+
+.label-chip .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: rgba(26, 95, 224, 0.1);
+  color: #1a5fe0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.label-chip .title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0c1b33;
+  line-height: 1.1;
+}
+
+/* Hide scrollbar visual noise for a cleaner cinematic feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 95, 224, 0.18);
+  border-radius: 9999px;
+}

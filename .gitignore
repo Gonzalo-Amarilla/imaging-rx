@@ -1,0 +1,34 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next
+out
+build
+
+# misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env
+.env
+.env*.local
+
+# typescript / next
+next-env.d.ts
+*.tsbuildinfo
+
+# vercel
+.vercel
+
+# design reference assets (not part of the app)
+demo-estilos
+
+# local tooling
+.claude

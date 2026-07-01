@@ -184,21 +184,21 @@ export default function ScrollSection() {
             {/* Title (eyebrow + h1) — top center, no description. */}
             <div
               className="absolute inset-x-0 top-0 flex flex-col items-center px-6 text-center"
-              style={{ paddingTop: "clamp(104px, 13vh, 168px)" }}
+              style={{ paddingTop: "clamp(78px, 8vh, 112px)" }}
             >
               <div
-                className="mb-[22px] uppercase text-accent"
-                style={{ fontSize: 14, fontWeight: 700, letterSpacing: "3.5px" }}
+                className="mb-3.5 uppercase text-accent"
+                style={{ fontSize: 13, fontWeight: 700, letterSpacing: "3.2px" }}
               >
                 Tecnología de imagen médica
               </div>
               <h1
                 className="text-balance text-ink"
                 style={{
-                  fontSize: "clamp(34px, 4.4vw, 70px)",
+                  fontSize: "clamp(29px, 3.5vw, 56px)",
                   lineHeight: 1,
                   fontWeight: 800,
-                  letterSpacing: "-1.8px",
+                  letterSpacing: "-1.4px",
                   maxWidth: "15ch",
                 }}
               >
